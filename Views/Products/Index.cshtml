@@ -7,13 +7,14 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <input type="button" class="btn btn-primary" value="Create Product">
         </div>
-        <div class="col-md-4">
-            @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+        <div class="col-md-6">
+            @using (Html.BeginForm("Index", "Products", FormMethod.Get, new { @class= "form-group row" }))
             {
-                <input type="search" name="keyword" class="form-control" placeholder="請輸入關鍵字" />
+                <input type="search" name="keyword" class="form-control col-md-4" placeholder="請輸入關鍵字" />
+                <input type="submit" class="btn btn-warning col-md-2" value="Search" />
             }
         </div>
     </div>
