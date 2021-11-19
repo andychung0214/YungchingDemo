@@ -1,18 +1,62 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YungchingDemo.BusinessLayer.NorthWind;
+using YungchingDemo.DataLayer.NorthWind;
+using YungchingDemo.Models.ViewModel;
 
 namespace YungchingDemo.Controllers
 {
     public class ProductsController : Controller
     {
+        ProductService ProductService { get; }
+
+        /// <summary>
+        /// Northwind Context
+        /// </summary>
+        private readonly NorthwindContext _context;
+
+        /// <summary>
+        /// 設定檔
+        /// </summary>
+        IConfiguration Config { get; }
+
+        /// <summary>
+        /// Auto Mapper
+        /// </summary>
+        IMapper Mapper { get; }
+
+        public ProductsController(NorthwindContext northwindContext, IConfiguration configuration, IMapper mapper)
+        {
+            ProductService = new ProductService(northwindContext, configuration, mapper);
+
+            _context = northwindContext;
+            Config = configuration;
+            Mapper = mapper;
+        }
+
         // GET: ProductsController
         public ActionResult Index()
         {
-            return View();
+            ProductModel vm = new ProductModel();
+            List<ProductModel> products = new List<ProductModel>();
+            var dbProducts = ProductService.GetAllProducts();
+
+            foreach (var item in dbProducts)
+            {
+                var productItem = Mapper.Map<ProductModel>(item);
+                products.Add(productItem);
+            }
+
+            vm.Products = products;
+
+            return View(vm);
         }
 
         // GET: ProductsController/Details/5

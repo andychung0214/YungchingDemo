@@ -1,8 +1,18 @@
-﻿@{
+﻿@model YungchingDemo.Models.ViewModel.OrderModel;
+@{
     ViewData["Title"] = "訂單管理";
 }
-
-<button class="btn btn-primary">Create Order</button>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <input type="button" class="btn btn-primary" value="Create Order">
+        </div>
+        <div class="col-md-4">
+            <input type="search" name="search" class="form-control" style="width :44%;display:inline; " placeholder="keyword" />
+            <input type="button" name="btnStart" class="btn btn-warning" value="search" />
+        </div>
+    </div>
+</div>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -15,33 +25,39 @@
             <th scope="col">運貨商</th>
             <th scope="col">運費</th>
             <th scope="col">貨主姓名</th>
-            <th scope="col">貨主地址</th>
+            <th scope="col" style="display: none">貨主地址</th>
             <th scope="col">貨主所在城市</th>
-            <th scope="col">貨主所在地區</th>
-            <th scope="col">貨主郵編</th>
+            <th scope="col" style="display: none">貨主所在地區</th>
+            <th scope="col" style="display: none">貨主郵編</th>
             <th scope="col">貨主所在國家</th>
-            <th scope="row"><button class="btn btn-success">Edit</button></th>
-            <th scope="row"><button class="btn btn-danger">Delete</button></th>
+            <th colspan="2">
+                Functions
+            </th>
         </tr>
     </thead>
     <tbody>
+        @foreach (var item in Model.Orders)
+        {
         <tr>
-            <th scope="row">訂單編號</th>
-            <th>客戶編號</th>
-            <th>員工編號</th>
-            <th>訂購日期</th>
-            <th>預計到達日期</th>
-            <th>發貨日期</th>
-            <th>運貨商</th>
-            <th>運費</th>
-            <th>貨主姓名</th>
-            <th>貨主地址</th>
-            <th>貨主所在城市</th>
-            <th>貨主所在地區</th>
-            <th>貨主郵編</th>
-            <th>貨主所在國家</th>
-            <th scope="row"><button class="btn btn-success">Edit</button></th>
-            <th scope="row"><button class="btn btn-danger">Delete</button></th>
+            <th scope="row">@item.OrderId</th>
+            <th scope="row">@item.CustomerId</th>
+            <th scope="row">@item.EmployeeId</th>
+            <th scope="row">@item.OrderDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
+            <th scope="row">@item.RequiredDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
+            <th scope="row">@item.ShippedDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
+            <th scope="row">@item.ShipVia</th>
+            <th scope="row">@item.Freight</th>
+            <th scope="row">@item.ShipName</th>
+            <th scope="row" style="display:none">@item.ShipAddress</th>
+            <th scope="row">@item.ShipCity</th>
+            <th scope="row" style="display: none">@item.ShipRegion</th>
+            <th scope="row" style="display: none">@item.ShipPostalCode</th>
+            <th scope="row">@item.ShipCountry</th>
+            <th colspan="2">
+                <button class="btn btn-success">Edit</button>
+                <button class="btn btn-danger">Delete</button>
+            </th>
         </tr>
+        }
     </tbody>
 </table>

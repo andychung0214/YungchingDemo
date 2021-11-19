@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YungchingDemo.DataLayer.NorthWind;
+using YungchingDemo.Models.ViewModel;
 
 namespace YungchingDemo
 {
@@ -29,6 +31,15 @@ namespace YungchingDemo
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:NorthWind"]));
 
+            #region Automapper
+
+            services.AddSingleton<IMapper>(new Mapper(new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Order, OrderModel>();
+                cfg.CreateMap<Product, ProductModel>();
+            })));   
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

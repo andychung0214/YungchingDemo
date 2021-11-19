@@ -1,8 +1,20 @@
-﻿@{
+﻿@model YungchingDemo.Models.ViewModel.ProductModel;
+
+@{
     ViewData["Title"] = "產品管理";
 }
 
-<button class="btn btn-primary">Create Product</button>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <input type="button" class="btn btn-primary" value="Create Product">
+        </div>
+        <div class="col-md-4">
+            <input type="search" name="search" class="form-control" style="width :44%;display:inline; " placeholder="keyword" />
+            <input type="button" name="btnStart" class="btn btn-warning" value="search" />
+        </div>
+    </div>
+</div>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -16,35 +28,30 @@
             <th scope="col">訂購量</th>
             <th scope="col">再次訂購量</th>
             <th scope="col">中止</th>
-            <th scope="col">編輯</th>
-            <th scope="col">刪除</th>
+            <th colspan="2">
+                Functions
+            </th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">產品ID</th>
-            <th scope="row">產品名稱</th>
-            <th scope="row">供應商ID</th>
-            <th scope="row">型別ID</th>
-            <th scope="row">數量</th>
-            <th scope="row">單價</th>
-            <th scope="row">庫存數量</th>
-            <th scope="row">訂購量</th>
-            <th scope="row">再次訂購量</th>
-            <th scope="row">中止</th>
-            <th scope="row"><button class="btn btn-success">Edit</button></th>
-            <th scope="row"><button class="btn btn-danger">Delete</button></th>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>twitter</td>
-        </tr>
+        @foreach (var item in Model.Products)
+        {
+            <tr>
+                <th scope="row">@item.ProductId</th>
+                <th scope="row">@item.ProductName</th>
+                <th scope="row">@item.SupplierId</th>
+                <th scope="row">@item.CategoryId</th>
+                <th scope="row">@item.QuantityPerUnit</th>
+                <th scope="row">@item.UnitPrice</th>
+                <th scope="row">@item.UnitsInStock</th>
+                <th scope="row">@item.UnitsOnOrder</th>
+                <th scope="row">@item.ReorderLevel</th>
+                <th scope="row">@item.Discontinued</th>
+                <th colspan="2">
+                    <button class="btn btn-success">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
+                </th>
+            </tr>
+        }
     </tbody>
 </table>
