@@ -49,12 +49,17 @@
                 <th scope="row">@item.ReorderLevel</th>
                 <th scope="row">@item.Discontinued</th>
                 <th colspan="2">
-                    <a class="nav-link text-dark" href="/Products/Details/@item.ProductId">
-                        <button class="btn btn-success">Detail</button>
+
+                    <a class="text-dark" href="/Products/Details/@item.ProductId">
+                        <input type="button" class="btn btn-success" value="Detail" />
+                    </a>
+                    <a class="text-dark" href="/Products/Details/@item.ProductId">
+                        <input type="button" class="btn btn-info" value="Edit" />
+                    </a>
+                    <a class="text-dark" href="/Products/Details/@item.ProductId">
+                        <input type="button" class="btn btn-danger" value="Delete" />
                     </a>
 
-                    <button class="btn btn-info">Edit</button>
-                    <button class="btn btn-danger">Delete</button>
                 </th>
             </tr>
         }

@@ -61,12 +61,17 @@
             <th scope="row" class="hideElement">@item.ShipPostalCode</th>
             <th scope="row">@item.ShipCountry</th>
             <th colspan="2">
-                <a class="nav-link text-dark" href="/Orders/Details/@item.OrderId">
 
-                    <button class="btn btn-success" >Detail</button>
-                    </a>
-                    <button class="btn btn-info">Edit</button>
-                    <button class="btn btn-danger">Delete</button>
+                <a class="text-dark" href="/Orders/Details/@item.OrderId">
+                    <input type="button" class="btn btn-success" value="Detail" />
+                </a>
+                <a class="text-dark" href="/Orders/Details/@item.OrderId">
+                    <input type="button" class="btn btn-info" value="Edit" />
+                </a>
+                <a class="text-dark" href="/Orders/Details/@item.OrderId">
+                    <input type="button" class="btn btn-danger" value="Delete" />
+                </a>
+
             </th>
         </tr>
         }
