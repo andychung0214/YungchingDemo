@@ -57,8 +57,16 @@ namespace YungchingDemo.Controllers
 
             vm.Products = products;
 
-            return View(vm);
+            return View(this.GetProducts(1));
         }
+
+        [HttpPost]
+        public IActionResult Index(int currentPageIndex)
+        {
+            return View(this.GetProducts(currentPageIndex));
+        }
+
+
 
         // GET: ProductsController/Details/5
         public ActionResult Details(int id)
@@ -74,7 +82,9 @@ namespace YungchingDemo.Controllers
         // GET: ProductsController/Create
         public ActionResult Create()
         {
-            return View();
+            ProductModel vm = new ProductModel();
+
+            return View(vm);
         }
 
         // POST: ProductsController/Create
@@ -95,7 +105,11 @@ namespace YungchingDemo.Controllers
         // GET: ProductsController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            ProductModel vm = new ProductModel();
+            var dbProduct = ProductService.GetProductById(id);
+            ProductModel product = Mapper.Map<ProductModel>(dbProduct);
+            vm = product;
+            return View(vm);
         }
 
         // POST: ProductsController/Edit/5
@@ -132,6 +146,35 @@ namespace YungchingDemo.Controllers
             {
                 return View();
             }
+        }
+
+        private ProductModel GetProducts(int currentPage)
+        {
+            int maxRows = 10;
+            ProductModel productModel = new ProductModel();
+
+            var dbProducts = (from product in _context.Products
+                              select product)
+                        .OrderBy(product => product.ProductId)
+                        .Skip((currentPage - 1) * maxRows)
+                        .Take(maxRows).ToList();
+
+            List<ProductModel> listProduct = new List<ProductModel>();
+
+            foreach (var item in dbProducts)
+            {
+                var productItem = Mapper.Map<ProductModel>(item);
+                listProduct.Add(productItem);
+            }
+
+            productModel.Products = listProduct;
+
+            double pageCount = (double)((decimal)_context.Products.Count() / Convert.ToDecimal(maxRows));
+            productModel.PageCount = (int)Math.Ceiling(pageCount);
+
+            productModel.CurrentPageIndex = currentPage;
+
+            return productModel;
         }
     }
 }

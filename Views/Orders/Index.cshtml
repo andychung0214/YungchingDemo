@@ -4,7 +4,7 @@
 }
 
 <style>
-    .hideElement{
+    .hideElement {
         display: none;
     }
 </style>
@@ -12,7 +12,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <input type="button" class="btn btn-primary" value="Create Order">
+            <a href="/Orders/create">
+                <input type="button" class="btn btn-primary" value="Create Order">
+            </a>
         </div>
         <div class="col-md-6">
             @using (Html.BeginForm("Index", "Orders", FormMethod.Get, new { @class = "form-group row" }))
@@ -23,6 +25,9 @@
         </div>
     </div>
 </div>
+
+
+
 <table class="table table-hover">
     <thead>
         <tr>
@@ -48,35 +53,52 @@
     <tbody>
         @foreach (var item in Model.Orders)
         {
-        <tr>
-            <th scope="row">@item.OrderId</th>
-            <th scope="row">@item.CustomerId</th>
-            <th scope="row">@item.EmployeeId</th>
-            <th scope="row">@item.OrderDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
-            <th scope="row">@item.RequiredDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
-            <th scope="row" class="hideElement">@item.ShippedDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
-            <th scope="row">@item.ShipVia</th>
-            <th scope="row">@item.Freight</th>
-            <th scope="row">@item.ShipName</th>
-            <th scope="row" class="hideElement">@item.ShipAddress</th>
-            <th scope="row">@item.ShipCity</th>
-            <th scope="row" class="hideElement">@item.ShipRegion</th>
-            <th scope="row" class="hideElement">@item.ShipPostalCode</th>
-            <th scope="row">@item.ShipCountry</th>
-            <th colspan="2">
+            <tr>
+                <th scope="row">@item.OrderId</th>
+                <th scope="row">@item.CustomerId</th>
+                <th scope="row">@item.EmployeeId</th>
+                <th scope="row">@item.OrderDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
+                <th scope="row">@item.RequiredDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
+                <th scope="row" class="hideElement">@item.ShippedDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
+                <th scope="row">@item.ShipVia</th>
+                <th scope="row">@item.Freight</th>
+                <th scope="row">@item.ShipName</th>
+                <th scope="row" class="hideElement">@item.ShipAddress</th>
+                <th scope="row">@item.ShipCity</th>
+                <th scope="row" class="hideElement">@item.ShipRegion</th>
+                <th scope="row" class="hideElement">@item.ShipPostalCode</th>
+                <th scope="row">@item.ShipCountry</th>
+                <th colspan="2">
 
-                <a class="text-dark" href="/Orders/Details/@item.OrderId">
-                    <input type="button" class="btn btn-success" value="Detail" />
-                </a>
-                <a class="text-dark" href="/Orders/Edit/@item.OrderId">
-                    <input type="button" class="btn btn-info" value="Edit" />
-                </a>
-                <a class="text-dark" href="/Orders/Delete/@item.OrderId">
-                    <input type="button" class="btn btn-danger" value="Delete" />
-                </a>
+                    <a class="text-dark" href="/Orders/Details/@item.OrderId">
+                        <input type="button" class="btn btn-success" value="Detail" />
+                    </a>
+                    <a class="text-dark" href="/Orders/Edit/@item.OrderId">
+                        <input type="button" class="btn btn-info" value="Edit" />
+                    </a>
+                    <a class="text-dark" href="/Orders/Delete/@item.OrderId">
+                        <input type="button" class="btn btn-danger confirmation" value="Delete" />
+                    </a>
 
-            </th>
-        </tr>
+                </th>
+            </tr>
         }
     </tbody>
 </table>
+<br />
+
+
+<div class="row">
+    <div class="col-lg-12">
+
+        @await Component.InvokeAsync("Pagination")
+
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $('.confirmation').on('click', function () {
+        return confirm('Are you sure delete?');
+    });
+</script>

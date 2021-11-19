@@ -2,33 +2,37 @@
 
 
 @{
-    ViewData["Title"] = "訂單明細";
+    ViewData["Title"] = "新增訂單";
 }
 <form>
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">訂單編號</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp" value="@Model.OrderId">
+        <input type="text" class="form-control" aria-describedby="emailHelp">
     </div>
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">產品編號</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp" value="@Model.ProductId">
+        <input type="text" class="form-control" aria-describedby="emailHelp">
     </div>
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">單價</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp" value="@Model.UnitPrice">
+        <input type="text" class="form-control" aria-describedby="emailHelp">
     </div>
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">訂購數量</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp" value="@Model.Quantity">
+        <input type="number" class="form-control" aria-describedby="emailHelp">
     </div>
 
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">折扣</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp" value="@Model.Discount">
+        <input type="text" class="form-control" aria-describedby="emailHelp">
     </div>
+
+    <a class="nav-link text-dark">
+        <input type="submit" class="btn btn-success" value="Save">
+    </a>
 
     <a class="nav-link text-dark" href="/Orders">
         <input type="button" class="btn btn-primary" value="Back List">

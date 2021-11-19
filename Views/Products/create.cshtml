@@ -1,0 +1,67 @@
+﻿@model YungchingDemo.Models.ViewModel.ProductModel;
+
+@{
+    ViewData["Title"] = "新增產品";
+}
+<form>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">產品ID</label>
+        <input type="text" class="form-control">
+    </div>
+
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">產品名稱</label>
+        <input type="text" class="form-control">
+    </div>
+
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">供應商ID</label>
+        <input type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">型別ID</label>
+        <input type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">數量</label>
+        <input type="number" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">單價</label>
+        <input type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">庫存數量</label>
+        <input type="number" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">訂購量</label>
+        <input type="number" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">再次訂購量</label>
+        <input type="number" class="form-control">
+    </div>
+
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">中止</label>
+        <input type="text" class="form-control">
+    </div>
+
+    <a class="nav-link text-dark">
+        <input type="submit" class="btn btn-success" value="Save">
+    </a>
+
+    <a class="nav-link text-dark" href="/Products">
+        <input type="button" class="btn btn-primary" value="Back List">
+    </a>
+</form>

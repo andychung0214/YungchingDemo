@@ -1,0 +1,41 @@
+﻿@model YungchingDemo.Models.ViewModel.OrderModel;
+
+
+@{
+    ViewData["Title"] = "編輯訂單";
+}
+<form>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">訂單編號</label>
+        <input type="text" class="form-control" aria-describedby="emailHelp" value="@Model.OrderId">
+    </div>
+
+    @foreach (var item in Model.OrderDetails)
+    {
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">產品編號</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp" value="@item.ProductId">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">單價</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp" value="@item.UnitPrice">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">訂購數量</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp" value="@item.Quantity">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">折扣</label>
+            <input type="text" class="form-control" aria-describedby="emailHelp" value="@item.Discount">
+        </div>
+    }
+
+
+
+    <a class="nav-link text-dark" href="/Orders">
+        <input type="button" class="btn btn-primary" value="Back List">
+    </a>
+</form>

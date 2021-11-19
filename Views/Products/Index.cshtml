@@ -8,10 +8,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <input type="button" class="btn btn-primary" value="Create Product">
+            <a href="/Products/create">
+                <input type="button" class="btn btn-primary" value="Create Product">
+            </a>
         </div>
         <div class="col-md-6">
-            @using (Html.BeginForm("Index", "Products", FormMethod.Get, new { @class= "form-group row" }))
+            @using (Html.BeginForm("Index", "Products", FormMethod.Get, new { @class = "form-group row" }))
             {
                 <input type="search" name="keyword" class="form-control col-md-4" placeholder="請輸入關鍵字" />
                 <input type="submit" class="btn btn-warning col-md-2" value="Search" />
@@ -19,52 +21,142 @@
         </div>
     </div>
 </div>
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">產品ID</th>
-            <th scope="col">產品名稱</th>
-            <th scope="col">供應商ID</th>
-            <th scope="col">型別ID</th>
-            <th scope="col">數量</th>
-            <th scope="col">單價</th>
-            <th scope="col">庫存數量</th>
-            <th scope="col">訂購量</th>
-            <th scope="col">再次訂購量</th>
-            <th scope="col">中止</th>
-            <th colspan="2">
-                Functions
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Products)
-        {
+<form asp-action="Index" asp-controller="Products" method="post">
+
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <th scope="row">@item.ProductId</th>
-                <th scope="row">@item.ProductName</th>
-                <th scope="row">@item.SupplierId</th>
-                <th scope="row">@item.CategoryId</th>
-                <th scope="row">@item.QuantityPerUnit</th>
-                <th scope="row">@item.UnitPrice</th>
-                <th scope="row">@item.UnitsInStock</th>
-                <th scope="row">@item.UnitsOnOrder</th>
-                <th scope="row">@item.ReorderLevel</th>
-                <th scope="row">@item.Discontinued</th>
+                <th scope="col">產品ID</th>
+                <th scope="col">產品名稱</th>
+                <th scope="col">供應商ID</th>
+                <th scope="col">型別ID</th>
+                <th scope="col">數量</th>
+                <th scope="col">單價</th>
+                <th scope="col">庫存數量</th>
+                <th scope="col">訂購量</th>
+                <th scope="col">再次訂購量</th>
+                <th scope="col">中止</th>
                 <th colspan="2">
-
-                    <a class="text-dark" href="/Products/Details/@item.ProductId">
-                        <input type="button" class="btn btn-success" value="Detail" />
-                    </a>
-                    <a class="text-dark" href="/Products/Edit/@item.ProductId">
-                        <input type="button" class="btn btn-info" value="Edit" />
-                    </a>
-                    <a class="text-dark" href="/Products/Delete/@item.ProductId">
-                        <input type="button" class="btn btn-danger" value="Delete" />
-                    </a>
-
+                    Functions
                 </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Products)
+            {
+                <tr>
+                    <th scope="row">@item.ProductId</th>
+                    <th scope="row">@item.ProductName</th>
+                    <th scope="row">@item.SupplierId</th>
+                    <th scope="row">@item.CategoryId</th>
+                    <th scope="row">@item.QuantityPerUnit</th>
+                    <th scope="row">@item.UnitPrice</th>
+                    <th scope="row">@item.UnitsInStock</th>
+                    <th scope="row">@item.UnitsOnOrder</th>
+                    <th scope="row">@item.ReorderLevel</th>
+                    <th scope="row">@item.Discontinued</th>
+                    <th colspan="2">
+
+                        <a class="text-dark" href="/Products/Details/@item.ProductId">
+                            <input type="button" class="btn btn-success" value="Detail" />
+                        </a>
+                        <a class="text-dark" href="/Products/Edit/@item.ProductId">
+                            <input type="button" class="btn btn-info" value="Edit" />
+                        </a>
+                        <a class="text-dark" href="/Products/Delete/@item.ProductId">
+                            <input type="button" class="btn btn-danger confirmation" value="Delete" />
+                        </a>
+
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            @if (Model.CurrentPageIndex != 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" 
+                       href="javascript:PagerClick(parseInt(@Model.CurrentPageIndex));" >
+                    Previous
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link disabled">Previous</a>
+                </li>
+            }
+            @for (int i = 1; i <= Model.PageCount; i++)
+            {
+
+                <li class="page-item">
+                    @if (i != Model.CurrentPageIndex)
+                    {
+                        <a name="pageIndex" class="active page-link" href="javascript:PagerClick(@i);" >@i</a>
+                    }
+                    else
+                    {
+                        <a name="pageIndex" class="page-link" href="javascript:PagerClick(@i);"  >@i</a>
+                    }
+                </li>
+            }
+            @if (Model.CurrentPageIndex != Model.PageCount)
+            {
+                <li class="page-item">
+                    <a class="page-link"  href="javascript:PagerClick(parseInt(@Model.CurrentPageIndex));"  >Next</a>
+                </li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link disabled">Next</a>
+                </li>
+            }
+        </ul>
+    </nav>
+    <input type="hidden" id="hfCurrentPageIndex" name="currentPageIndex" />
+</form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+    function PagerClick(index) {
+        document.getElementById("hfCurrentPageIndex").value = index;
+        document.forms[1].submit();
+    }
+
+    $('.confirmation').on('click', function () {
+        return confirm('Are you sure delete?');
+    });
+
+    $(document).ready(function () {
+        let url = new URL('https://localhost:44386/Products');
+        let params = new URLSearchParams(url.search.slice(1));
+        params.append('currentIndex', index);
+
+        //var pageName = window.location.pathname;
+        //var newPageName = pageName;
+
+        //if (pageName.indexOf('/') == 0) {
+        //    newPageName = pageName.substring(1, pageName.length);
+
+        //    $.each($('.pagination').find('li'), function () {
+        //        var hrefVal = $(this).find('a').attr('href');
+        //        if (hrefVal == undefined) {
+        //            return;
+        //        }
+
+        //        if (hrefVal.indexOf(document.getElementById("hfCurrentPageIndex").value) >= 0) {
+        //            $(this).addClass('active').siblings().removeClass('active');
+        //            break;
+        //        }
+
+        //    });
+        //}
+    });
+</script>
