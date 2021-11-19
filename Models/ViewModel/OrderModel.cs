@@ -25,8 +25,20 @@ namespace YungchingDemo.Models.ViewModel
         //public virtual Customer Customer { get; set; }
         //public virtual Employee Employee { get; set; }
         //public virtual Shipper ShipViaNavigation { get; set; }
-        //public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetailModel> OrderDetails { get; set; }
 
         public List<OrderModel> Orders { get; set; }
+    }
+
+    public class OrderDetailModel
+    {
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
+        public decimal UnitPrice { get; set; }
+        public short Quantity { get; set; }
+        public float Discount { get; set; }
+
+        public virtual OrderModel Order { get; set; }
+        public virtual ProductModel Product { get; set; }
     }
 }

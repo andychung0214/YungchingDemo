@@ -34,9 +34,14 @@ namespace YungchingDemo.BusinessLayer.NorthWind
 
         public IQueryable<Order> GetAllOrders()
         {
-            IQueryable<Order> orders = from m in NorthwindContext.Orders
-                                       select m;
+            IQueryable<Order> orders = NorthwindContext.Orders;
             return orders;
+        }
+
+        public OrderDetail GetOrderById(int orderId)
+        {
+            OrderDetail order = NorthwindContext.OrderDetails.Where(o => o.OrderId == orderId).FirstOrDefault();
+            return order;
         }
 
     }

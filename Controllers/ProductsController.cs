@@ -62,7 +62,12 @@ namespace YungchingDemo.Controllers
         // GET: ProductsController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            ProductModel vm = new ProductModel();
+            var dbProduct = ProductService.GetProductById(id);
+            ProductModel product = Mapper.Map<ProductModel>(dbProduct);
+            vm = product;
+
+            return View(vm);
         }
 
         // GET: ProductsController/Create

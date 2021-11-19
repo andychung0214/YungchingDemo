@@ -43,9 +43,9 @@ namespace YungchingDemo.Controllers
         {
             OrderModel vm = new OrderModel();
             List<OrderModel> orders = new List<OrderModel>();
-            var dbProducts = OrderService.GetAllOrders();
+            var dbOrders = OrderService.GetAllOrders();
 
-            foreach (var item in dbProducts)
+            foreach (var item in dbOrders)
             {
                 var orderItem = Mapper.Map<OrderModel>(item);
                 orders.Add(orderItem);
@@ -59,7 +59,12 @@ namespace YungchingDemo.Controllers
         // GET: OrdersController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            OrderDetailModel vm = new OrderDetailModel();
+            OrderDetail orderDetail = OrderService.GetOrderById(id);
+
+            vm = Mapper.Map<OrderDetailModel>(orderDetail);
+
+            return View(vm);
         }
 
         // GET: OrdersController/Create
@@ -107,6 +112,8 @@ namespace YungchingDemo.Controllers
         // GET: OrdersController/Delete/5
         public ActionResult Delete(int id)
         {
+
+
             return View();
         }
 

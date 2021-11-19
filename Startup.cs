@@ -36,8 +36,9 @@ namespace YungchingDemo
             services.AddSingleton<IMapper>(new Mapper(new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Order, OrderModel>();
+                cfg.CreateMap<OrderDetail, OrderDetailModel>();
                 cfg.CreateMap<Product, ProductModel>();
-            })));   
+            })));
 
             #endregion
         }

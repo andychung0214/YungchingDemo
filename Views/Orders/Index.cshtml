@@ -2,6 +2,13 @@
 @{
     ViewData["Title"] = "訂單管理";
 }
+
+<style>
+    .hideElement{
+        display: none;
+    }
+</style>
+
 <div class="container">
     <div class="row">
         <div class="col-md-8">
@@ -21,14 +28,14 @@
             <th scope="col">員工編號</th>
             <th scope="col">訂購日期</th>
             <th scope="col">預計到達日期</th>
-            <th scope="col">發貨日期</th>
+            <th scope="col" class="hideElement">發貨日期</th>
             <th scope="col">運貨商</th>
             <th scope="col">運費</th>
             <th scope="col">貨主姓名</th>
-            <th scope="col" style="display: none">貨主地址</th>
+            <th scope="col" class="hideElement">貨主地址</th>
             <th scope="col">貨主所在城市</th>
-            <th scope="col" style="display: none">貨主所在地區</th>
-            <th scope="col" style="display: none">貨主郵編</th>
+            <th scope="col" class="hideElement">貨主所在地區</th>
+            <th scope="col" class="hideElement">貨主郵編</th>
             <th scope="col">貨主所在國家</th>
             <th colspan="2">
                 Functions
@@ -44,18 +51,22 @@
             <th scope="row">@item.EmployeeId</th>
             <th scope="row">@item.OrderDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
             <th scope="row">@item.RequiredDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
-            <th scope="row">@item.ShippedDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
+            <th scope="row" class="hideElement">@item.ShippedDate.GetValueOrDefault().ToString("yyyy-MM-dd")</th>
             <th scope="row">@item.ShipVia</th>
             <th scope="row">@item.Freight</th>
             <th scope="row">@item.ShipName</th>
-            <th scope="row" style="display:none">@item.ShipAddress</th>
+            <th scope="row" class="hideElement">@item.ShipAddress</th>
             <th scope="row">@item.ShipCity</th>
-            <th scope="row" style="display: none">@item.ShipRegion</th>
-            <th scope="row" style="display: none">@item.ShipPostalCode</th>
+            <th scope="row" class="hideElement">@item.ShipRegion</th>
+            <th scope="row" class="hideElement">@item.ShipPostalCode</th>
             <th scope="row">@item.ShipCountry</th>
             <th colspan="2">
-                <button class="btn btn-success">Edit</button>
-                <button class="btn btn-danger">Delete</button>
+                <a class="nav-link text-dark" href="/Orders/Details/@item.OrderId">
+
+                    <button class="btn btn-success" >Detail</button>
+                    </a>
+                    <button class="btn btn-info">Edit</button>
+                    <button class="btn btn-danger">Delete</button>
             </th>
         </tr>
         }

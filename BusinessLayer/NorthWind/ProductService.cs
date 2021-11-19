@@ -35,9 +35,14 @@ namespace YungchingDemo.BusinessLayer.NorthWind
 
         public IQueryable<Product> GetAllProducts()
         {
-            IQueryable<Product> products = from m in NorthwindContext.Products
-                                           select m;
+            IQueryable<Product> products = NorthwindContext.Products;
             return products;
+        }
+
+        public Product GetProductById(int productId)
+        {
+            Product product = NorthwindContext.Products.Where(o => o.ProductId == productId).FirstOrDefault();
+            return product;
         }
     }
 }
