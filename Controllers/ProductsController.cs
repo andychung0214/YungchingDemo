@@ -42,11 +42,12 @@ namespace YungchingDemo.Controllers
         }
 
         // GET: ProductsController
-        public ActionResult Index()
+        public ActionResult Index(string keyword)
         {
             ProductModel vm = new ProductModel();
             List<ProductModel> products = new List<ProductModel>();
-            var dbProducts = ProductService.GetAllProducts();
+
+            var dbProducts = ProductService.GetAllProducts(keyword);
 
             foreach (var item in dbProducts)
             {

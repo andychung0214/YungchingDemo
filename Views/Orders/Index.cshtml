@@ -15,8 +15,10 @@
             <input type="button" class="btn btn-primary" value="Create Order">
         </div>
         <div class="col-md-4">
-            <input type="search" name="search" class="form-control" style="width :44%;display:inline; " placeholder="keyword" />
-            <input type="button" name="btnStart" class="btn btn-warning" value="search" />
+            @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
+            {
+                <input type="search" name="keyword" class="form-control" placeholder="請輸入關鍵字" />
+            }
         </div>
     </div>
 </div>
@@ -65,10 +67,10 @@
                 <a class="text-dark" href="/Orders/Details/@item.OrderId">
                     <input type="button" class="btn btn-success" value="Detail" />
                 </a>
-                <a class="text-dark" href="/Orders/Details/@item.OrderId">
+                <a class="text-dark" href="/Orders/Edit/@item.OrderId">
                     <input type="button" class="btn btn-info" value="Edit" />
                 </a>
-                <a class="text-dark" href="/Orders/Details/@item.OrderId">
+                <a class="text-dark" href="/Orders/Delete/@item.OrderId">
                     <input type="button" class="btn btn-danger" value="Delete" />
                 </a>
 

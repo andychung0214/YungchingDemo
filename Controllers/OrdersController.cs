@@ -39,11 +39,11 @@ namespace YungchingDemo.Controllers
         }
 
         // GET: OrdersController
-        public ActionResult Index()
+        public ActionResult Index(string keyword)
         {
             OrderModel vm = new OrderModel();
             List<OrderModel> orders = new List<OrderModel>();
-            var dbOrders = OrderService.GetAllOrders();
+            var dbOrders = OrderService.GetAllOrders(keyword);
 
             foreach (var item in dbOrders)
             {

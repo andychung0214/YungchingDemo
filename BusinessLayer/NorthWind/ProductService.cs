@@ -33,9 +33,19 @@ namespace YungchingDemo.BusinessLayer.NorthWind
             Mapper = mapper;
         }
 
-        public IQueryable<Product> GetAllProducts()
+        public IQueryable<Product> GetAllProducts(string keyword)
         {
-            IQueryable<Product> products = NorthwindContext.Products;
+            IQueryable<Product> products;
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                products = NorthwindContext.Products.Where(o => o.ProductName.Contains(keyword));
+            }
+            else
+            {
+                products = NorthwindContext.Products;
+            }
+
             return products;
         }
 

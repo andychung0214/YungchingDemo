@@ -32,9 +32,17 @@ namespace YungchingDemo.BusinessLayer.NorthWind
             Mapper = mapper;
         }
 
-        public IQueryable<Order> GetAllOrders()
+        public IQueryable<Order> GetAllOrders(string keyword)
         {
-            IQueryable<Order> orders = NorthwindContext.Orders;
+            IQueryable<Order> orders;
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                orders = NorthwindContext.Orders.Where(o => o.CustomerId.Contains(keyword));
+            }
+            else
+            {
+                orders = NorthwindContext.Orders;
+            }
             return orders;
         }
 
