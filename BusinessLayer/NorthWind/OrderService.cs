@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace YungchingDemo.BusinessLayer.NorthWind
 {
-    public class OrderService
+    public class OrderService: BaseService
     {
+
     }
 }
