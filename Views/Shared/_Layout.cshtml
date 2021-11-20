@@ -10,6 +10,12 @@
     @RenderSection("HeaderScripts", required: false)
 </head>
 <body>
+
+    <a id="aEdit" href='#' class='btn btn-small btn-primary jtheme2' style="display:none;">dark_green</a>
+    <a id="aError" href='#' class='btn btn-small btn-primary jtheme2' style="display:none;">dark_red</a>
+    <a id="aCreate" href='#' class='btn btn-small btn-primary jtheme2' style="display:none;">yellow</a>
+
+
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -49,6 +55,12 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <!--jAlert-->
+    <link rel="stylesheet" href="https://andychung0214.synology.me/lib/jAlert/jAlert.css">
+    <script type="text/javascript" src="https://andychung0214.synology.me/lib/jAlert/jAlert.min.js"></script>
+    <script type="text/javascript" src="https://andychung0214.synology.me/lib/jAlert/jAlert-functions.min.js"></script>
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
