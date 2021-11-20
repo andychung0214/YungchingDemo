@@ -28,6 +28,16 @@ namespace YungchingDemo.Models.ViewModel
         public virtual ICollection<OrderDetailModel> OrderDetails { get; set; }
 
         public List<OrderModel> Orders { get; set; }
+
+        ///<summary>
+        /// Gets or sets CurrentPageIndex.
+        ///</summary>
+        public int CurrentPageIndex { get; set; }
+
+        ///<summary>
+        /// Gets or sets PageCount.
+        ///</summary>
+        public int PageCount { get; set; }
     }
 
     public class OrderDetailModel

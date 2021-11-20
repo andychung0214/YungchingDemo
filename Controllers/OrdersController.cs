@@ -52,7 +52,7 @@ namespace YungchingDemo.Controllers
 
             if (pageSize == 0)
             {
-                pageSize = 4;
+                pageSize = 8;
             }
             //if (!string.IsNullOrEmpty(keyword))
             //{
@@ -122,10 +122,10 @@ namespace YungchingDemo.Controllers
         // GET: OrdersController/Edit/5
         public ActionResult Edit(int id)
         {
-            OrderModel vm = new OrderModel();
-            OrderDetail orderDetail = OrderService.GetOrderById(id);
+            OrderDetailModel vm = new OrderDetailModel();
+            var orderDetail = OrderService.GetOrderById(id);
 
-            vm = Mapper.Map<OrderModel>(orderDetail);
+            vm = Mapper.Map<OrderDetailModel>(orderDetail);
             return View(vm);
         }
 

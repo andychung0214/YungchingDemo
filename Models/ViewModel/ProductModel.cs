@@ -22,6 +22,16 @@ namespace YungchingDemo.Models.ViewModel
         //public virtual Supplier Supplier { get; set; }
         //public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
+        ///<summary>
+        /// Gets or sets CurrentPageIndex.
+        ///</summary>
+        public int CurrentPageIndex { get; set; }
+
+        ///<summary>
+        /// Gets or sets PageCount.
+        ///</summary>
+        public int PageCount { get; set; }
+
         public List<ProductModel> Products { get; set; }
     }
 }
