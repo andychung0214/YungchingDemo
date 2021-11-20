@@ -4,37 +4,66 @@
 @{
     ViewData["Title"] = "新增訂單";
 }
-<form>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">訂單編號</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp">
+
+
+
+<form id="formCreateOrder">
+    <div class="row mb-3">
+        <label for="orderID" class="col-sm-2 col-form-label">訂單編號</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="orderID">
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">產品編號</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp">
+    <div class="row mb-3">
+        <label for="productID" class="col-sm-2 col-form-label">產品編號</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="productID">
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">單價</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp">
+    <div class="row mb-3">
+        <label for="unitPrice" class="col-sm-2 col-form-label">單價</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="unitPrice">
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">訂購數量</label>
-        <input type="number" class="form-control" aria-describedby="emailHelp">
+    <div class="row mb-3">
+        <label for="quantity" class="col-sm-2 col-form-label">訂購數量</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="quantity">
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">折扣</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp">
+    <div class="row mb-3">
+        <label for="discount" class="col-sm-2 col-form-label">折扣</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="discount">
+        </div>
     </div>
+    <div class="row mb-3">
+        <a class="text-dark">
+            <input id="submitCreateOrder" type="submit" class="btn btn-success" value="Create Order">
+        </a>
 
-    <a class="nav-link text-dark">
-        <input type="submit" class="btn btn-success" value="Save">
-    </a>
-
-    <a class="nav-link text-dark" href="/Orders">
-        <input type="button" class="btn btn-primary" value="Back List">
-    </a>
+        <a class="text-dark" href="/Orders">
+            <input type="button" class="btn btn-primary" value="Back List">
+        </a>
+    </div>
 </form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    $('#formCreateOrder').on('submit', function (event) {
+        event.preventDefault();
+
+        debugger
+
+        var productData = {
+            ProductName: $('#productID').val(),
+            Discontinued: false
+        };
+
+        SaveData("Create", productData, "order");
+    });
+
+</script>

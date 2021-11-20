@@ -44,82 +44,89 @@
         <tbody>
             @foreach (var item in Model.Products)
             {
-                <tr>
-                    <th scope="row">@item.ProductId</th>
-                    <th scope="row">@item.ProductName</th>
-                    <th scope="row">@item.SupplierId</th>
-                    <th scope="row">@item.CategoryId</th>
-                    <th scope="row">@item.QuantityPerUnit</th>
-                    <th scope="row">@item.UnitPrice</th>
-                    <th scope="row">@item.UnitsInStock</th>
-                    <th scope="row">@item.UnitsOnOrder</th>
-                    <th scope="row">@item.ReorderLevel</th>
-                    <th scope="row">@item.Discontinued</th>
-                    <th colspan="2">
+            <tr>
+                <th scope="row">@item.ProductId</th>
+                <th scope="row">@item.ProductName</th>
+                <th scope="row">@item.SupplierId</th>
+                <th scope="row">@item.CategoryId</th>
+                <th scope="row">@item.QuantityPerUnit</th>
+                <th scope="row">@item.UnitPrice</th>
+                <th scope="row">@item.UnitsInStock</th>
+                <th scope="row">@item.UnitsOnOrder</th>
+                <th scope="row">@item.ReorderLevel</th>
+                <th scope="row">@item.Discontinued</th>
+                <th colspan="2">
 
-                        <a class="text-dark" href="/Products/Details/@item.ProductId">
-                            <input type="button" class="btn btn-success" value="Detail" />
-                        </a>
-                        <a class="text-dark" href="/Products/Edit/@item.ProductId">
-                            <input type="button" class="btn btn-info" value="Edit" />
-                        </a>
-                        <a class="text-dark" href="/Products/Delete/@item.ProductId">
-                            <input type="button" class="btn btn-danger confirmation" value="Delete" />
-                        </a>
+                    <a class="text-dark" href="/Products/Details/@item.ProductId">
+                        <input type="button" class="btn btn-success" value="Detail" />
+                    </a>
+                    <a class="text-dark" href="/Products/Edit/@item.ProductId">
+                        <input type="button" class="btn btn-info" value="Edit" />
+                    </a>
+                    <a class="text-dark" href="/Products/Delete/@item.ProductId">
+                        <input type="button" class="btn btn-danger confirmation" value="Delete" />
+                    </a>
 
-                    </th>
-                </tr>
+                </th>
+            </tr>
             }
         </tbody>
     </table>
     <br />
 
+    <div class="row">
+        <div class="col-lg-12">
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            @if (Model.CurrentPageIndex != 1)
-            {
-                <li class="page-item">
-                    <a class="page-link" 
-                       href="javascript:PagerClick(parseInt(@Model.CurrentPageIndex));" >
-                    Previous
-                    </a>
-                </li>
-            }
-            else
-            {
-                <li class="page-item">
-                    <a class="page-link disabled">Previous</a>
-                </li>
-            }
-            @for (int i = 1; i <= Model.PageCount; i++)
-            {
+            @await Component.InvokeAsync("Pagination")
 
-                <li class="page-item">
-                    @if (i != Model.CurrentPageIndex)
-                    {
-                        <a name="pageIndex" class="active page-link" href="javascript:PagerClick(@i);" >@i</a>
-                    }
-                    else
-                    {
-                        <a name="pageIndex" class="page-link" href="javascript:PagerClick(@i);"  >@i</a>
-                    }
-                </li>
-            }
-            @if (Model.CurrentPageIndex != Model.PageCount)
-            {
-                <li class="page-item">
-                    <a class="page-link"  href="javascript:PagerClick(parseInt(@Model.CurrentPageIndex));"  >Next</a>
-                </li>
-            }
-            else
-            {
-                <li class="page-item">
-                    <a class="page-link disabled">Next</a>
-                </li>
-            }
-        </ul>
-    </nav>
+        </div>
+    </div>
+
+    @*<nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                @if (Model.CurrentPageIndex != 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link"
+                           href="javascript:PagerClick(parseInt(@Model.CurrentPageIndex));" >
+                        Previous
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link disabled">Previous</a>
+                    </li>
+                }
+                @for (int i = 1; i <= Model.PageCount; i++)
+                {
+
+                    <li class="page-item">
+                        @if (i != Model.CurrentPageIndex)
+                        {
+                            <a name="pageIndex" class="active page-link" href="javascript:PagerClick(@i);" >@i</a>
+                        }
+                        else
+                        {
+                            <a name="pageIndex" class="page-link" href="javascript:PagerClick(@i);"  >@i</a>
+                        }
+                    </li>
+                }
+                @if (Model.CurrentPageIndex != Model.PageCount)
+                {
+                    <li class="page-item">
+                        <a class="page-link"  href="javascript:PagerClick(parseInt(@Model.CurrentPageIndex));"  >Next</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                        <a class="page-link disabled">Next</a>
+                    </li>
+                }
+            </ul>
+        </nav>*@
     <input type="hidden" id="hfCurrentPageIndex" name="currentPageIndex" />
 </form>
 

@@ -1,41 +1,66 @@
-﻿@model YungchingDemo.Models.ViewModel.OrderModel;
+﻿@model YungchingDemo.Models.ViewModel.OrderDetailModel;
 
 
 @{
     ViewData["Title"] = "編輯訂單";
 }
-<form>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">訂單編號</label>
-        <input type="text" class="form-control" aria-describedby="emailHelp" value="@Model.OrderId">
+
+<form id="formEditOrder">
+    <div class="row mb-3">
+        <label for="orderID" class="col-sm-2 col-form-label">訂單編號</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="orderID" value="@Model.OrderId" disabled>
+        </div>
     </div>
 
-    @foreach (var item in Model.OrderDetails)
-    {
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">產品編號</label>
-            <input type="text" class="form-control" aria-describedby="emailHelp" value="@item.ProductId">
+    <div class="row mb-3">
+        <label for="productID" class="col-sm-2 col-form-label">產品編號</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="productID" value="@Model.ProductId">
         </div>
-
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">單價</label>
-            <input type="text" class="form-control" aria-describedby="emailHelp" value="@item.UnitPrice">
+    </div>
+    <div class="row mb-3">
+        <label for="unitPrice" class="col-sm-2 col-form-label">單價</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="unitPrice" value="@Model.UnitPrice">
         </div>
-
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">訂購數量</label>
-            <input type="text" class="form-control" aria-describedby="emailHelp" value="@item.Quantity">
+    </div>
+    <div class="row mb-3">
+        <label for="quantity" class="col-sm-2 col-form-label">訂購數量</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="quantity" value="@Model.Quantity">
         </div>
-
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">折扣</label>
-            <input type="text" class="form-control" aria-describedby="emailHelp" value="@item.Discount">
+    </div>
+    <div class="row mb-3">
+        <label for="discount" class="col-sm-2 col-form-label">折扣</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="discount" value="@Model.Discount">
         </div>
-    }
+    </div>
+    <div class="row mb-3">
+        <a class="text-dark">
+            <input id="submitEditOrder" type="submit" class="btn btn-success" value="Edit Order">
+        </a>
+        <div class="col-sm-10">
 
-
-
-    <a class="nav-link text-dark" href="/Orders">
-        <input type="button" class="btn btn-primary" value="Back List">
-    </a>
+            <a class="text-dark" href="/Orders">
+                <input type="button" class="btn btn-primary" value="Back List">
+            </a>
+        </div>
+    </div>
 </form>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $('#formEditOrder').on('submit', function (event) {
+        var orderData = {
+            id: @Model.OrderId,
+            UnitPrice: $('#unitPrice').val(),
+            Quantity: $('#quantity').val(),
+            Discount: $('#discount').val()
+        };
+
+        SaveData("Update", orderData, "order");
+        event.preventDefault();
+    });
+</script>

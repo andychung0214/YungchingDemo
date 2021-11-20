@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YungchingDemo.DataLayer.NorthWind;
+using YungchingDemo.Models.ViewModel;
 
 namespace YungchingDemo.BusinessLayer.NorthWind
 {
@@ -50,6 +51,32 @@ namespace YungchingDemo.BusinessLayer.NorthWind
         {
             OrderDetail order = NorthwindContext.OrderDetails.Where(o => o.OrderId == orderId).FirstOrDefault();
             return order;
+        }
+
+        public async Task UpdateOrder(int orderID, OrderDetailModel orderInfo)
+        {
+            var orderEntitiy = NorthwindContext.OrderDetails.Where(o => o.OrderId == orderID).FirstOrDefault();
+
+            if (orderEntitiy == null)
+            {
+                throw new InvalidOperationException($"Connot find the article with order id: {orderID}");
+            }
+            else
+            {
+                try
+                {
+                    orderEntitiy.UnitPrice = orderInfo.UnitPrice;
+                    orderEntitiy.Quantity = orderInfo.Quantity;
+                    orderEntitiy.Discount = orderInfo.Discount;
+
+                    NorthwindContext.OrderDetails.Update(orderEntitiy);
+                    await NorthwindContext.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
+            }
         }
 
     }

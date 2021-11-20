@@ -38,6 +38,7 @@ namespace YungchingDemo
                 cfg.CreateMap<Order, OrderModel>();
                 cfg.CreateMap<OrderDetail, OrderDetailModel>();
                 cfg.CreateMap<Product, ProductModel>();
+                cfg.CreateMap<ProductModel, Product>();
             })));
 
             #endregion

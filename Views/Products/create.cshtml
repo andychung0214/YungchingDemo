@@ -3,65 +3,99 @@
 @{
     ViewData["Title"] = "新增產品";
 }
-<form>
 
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">產品ID</label>
-        <input type="text" class="form-control">
+
+
+
+<form id="formCreateProduct">
+    <div class="row mb-3">
+        <label for="productID" class="col-sm-2 col-form-label">產品ID</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="productID">
+        </div>
     </div>
-
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">產品名稱</label>
-        <input type="text" class="form-control">
+    <div class="row mb-3">
+        <label for="productName" class="col-sm-2 col-form-label">產品名稱</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="productName">
+        </div>
     </div>
-
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">供應商ID</label>
-        <input type="text" class="form-control">
+    <div class="row mb-3">
+        <label for="supplierID" class="col-sm-2 col-form-label">供應商ID</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="supplierID">
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">型別ID</label>
-        <input type="text" class="form-control">
+    <div class="row mb-3">
+        <label for="categoryID" class="col-sm-2 col-form-label">型別ID</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="categoryID">
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">數量</label>
-        <input type="number" class="form-control">
+    <div class="row mb-3">
+        <label for="quantity" class="col-sm-2 col-form-label">數量</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="quantity">
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">單價</label>
-        <input type="text" class="form-control">
+    <div class="row mb-3">
+        <label for="unitPrice" class="col-sm-2 col-form-label">單價</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="unitPrice">
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">庫存數量</label>
-        <input type="number" class="form-control">
+    <div class="row mb-3">
+        <label for="unitInStock" class="col-sm-2 col-form-label">庫存數量</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="unitInStock">
+        </div>
     </div>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">訂購量</label>
-        <input type="number" class="form-control">
+    <div class="row mb-3">
+        <label for="unitOnOrder" class="col-sm-2 col-form-label">訂購量</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="unitOnOrder">
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">再次訂購量</label>
-        <input type="number" class="form-control">
+    <div class="row mb-3">
+        <label for="recorderLevel" class="col-sm-2 col-form-label">再次訂購量</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="recorderLevel">
+        </div>
     </div>
-
-
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">中止</label>
-        <input type="text" class="form-control">
+    <div class="row mb-3">
+        <label for="recorderLevel" class="col-sm-2 col-form-label">中止</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="recorderLevel">
+        </div>
     </div>
-
-    <a class="nav-link text-dark">
-        <input type="submit" class="btn btn-success" value="Save">
-    </a>
-
-    <a class="nav-link text-dark" href="/Products">
-        <input type="button" class="btn btn-primary" value="Back List">
-    </a>
+    <div class="row mb-3">
+        <input id="submitCreateProduct" type="submit" class="btn btn-success" value="Create Product">
+        <a class="text-dark" href="/Products">
+            <input type="button" class="btn btn-primary" value="Back List">
+        </a>
+    </div>
 </form>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+    $('#formCreateProduct').on('submit', function (event) {
+        event.preventDefault();
+
+        debugger
+
+        var productData = {
+            ProductId: 79,
+            ProductName: $('#productName').val(),
+            SupplierID: 2,
+            CategoryID: 2,
+            Discontinued: false
+        };
+
+        SaveData("Create", productData, "product");
+
+
+    });
+
+</script>

@@ -44,15 +44,15 @@ $('#aError').on('click', function (e) {
     return false;
 });
 
-function SaveArticle(status, articleData) {
-    if (articleData != null) {
+function SaveData(status, datas, categoryName) {
+    if (datas != null) {
         var isUpdate = status == "Update" ? true : false;
     }
-    callUrl = "/api/web/product" + (isUpdate ? "/" + articleData.id : "");
+    callUrl = "/api/web/" + categoryName + (isUpdate ? "/" + datas.id : "");
     $.ajax({
         type: isUpdate ? "PUT" : "POST",
         url: callUrl,
-        data: articleData
+        data: datas
     }).done(function (res) {
         if (status == "Create") {
             console.log('create action');
