@@ -86,14 +86,17 @@
     //}
     $('#formCreateProduct').on('submit', function (event) {
         var productData = {
-            id: "@Model.ProductId",
+            id: @Model.ProductId,
             ProductName: $('#productName').val(),
+            SupplierID: $('#supplierID').val(),
+            CategoryID: $('#categoryID').val(),
             QuantityPerUnit: $('#quantity').val(),
             UnitPrice: $('#unitPrice').val(),
             UnitsInStock: $('#unitInStock').val(),
             UnitsOnOrder: $('#unitOnOrder').val(),
             ReorderLevel: $('#recorderLevel').val(),
-            Discontinued: $('#recorderLevel').val()
+            Discontinued: $('#recorderLevel').val(),
+            Products: productData
         }
 
         SaveData("Update", productData, "product");
