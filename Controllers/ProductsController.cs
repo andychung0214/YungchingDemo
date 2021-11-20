@@ -107,8 +107,8 @@ namespace YungchingDemo.Controllers
         {
             ProductModel vm = new ProductModel();
             var dbProduct = ProductService.GetProductById(id);
-            ProductModel product = Mapper.Map<ProductModel>(dbProduct);
-            vm = product;
+            vm = Mapper.Map<ProductModel>(dbProduct);
+
             return View(vm);
         }
 
@@ -128,9 +128,22 @@ namespace YungchingDemo.Controllers
         }
 
         // GET: ProductsController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            if (id == 0)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                await ProductService.DeleteProductBy(id);
+                return StatusCode(StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
         }
 
         // POST: ProductsController/Delete/5

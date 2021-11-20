@@ -131,32 +131,41 @@
     }
 
     $('.confirmation').on('click', function () {
+        @*var callUrl = "api/web/@Model.ProductId"
+        $.ajax({
+            type: "DELETE",
+            url: callUrl
+        }).done(function (res) {
+            $('#aError').trigger('click');
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            $('#aError').trigger('click');
+        });*@
         return confirm('Are you sure delete?');
     });
 
-    $(document).ready(function () {
-        let url = new URL('https://localhost:44386/Products');
-        let params = new URLSearchParams(url.search.slice(1));
-        params.append('currentIndex', index);
+    //$(document).ready(function () {
+    //    let url = new URL('https://localhost:44386/Products');
+    //    let params = new URLSearchParams(url.search.slice(1));
+    //    params.append('currentIndex', index);
 
-        //var pageName = window.location.pathname;
-        //var newPageName = pageName;
+    //    //var pageName = window.location.pathname;
+    //    //var newPageName = pageName;
 
-        //if (pageName.indexOf('/') == 0) {
-        //    newPageName = pageName.substring(1, pageName.length);
+    //    //if (pageName.indexOf('/') == 0) {
+    //    //    newPageName = pageName.substring(1, pageName.length);
 
-        //    $.each($('.pagination').find('li'), function () {
-        //        var hrefVal = $(this).find('a').attr('href');
-        //        if (hrefVal == undefined) {
-        //            return;
-        //        }
+    //    //    $.each($('.pagination').find('li'), function () {
+    //    //        var hrefVal = $(this).find('a').attr('href');
+    //    //        if (hrefVal == undefined) {
+    //    //            return;
+    //    //        }
 
-        //        if (hrefVal.indexOf(document.getElementById("hfCurrentPageIndex").value) >= 0) {
-        //            $(this).addClass('active').siblings().removeClass('active');
-        //            break;
-        //        }
+    //    //        if (hrefVal.indexOf(document.getElementById("hfCurrentPageIndex").value) >= 0) {
+    //    //            $(this).addClass('active').siblings().removeClass('active');
+    //    //            break;
+    //    //        }
 
-        //    });
-        //}
-    });
+    //    //    });
+    //    //}
+    //});
 </script>
