@@ -41,6 +41,8 @@ namespace YungchingDemo.Controllers
         // GET: OrdersController
         public async Task<IActionResult> Index(string keyword, int? pageNumber, int pageSize = 0)
         {
+            ViewBag.CurrentPageIndex = pageNumber <= 1 ? 1 : pageNumber;
+
             OrderModel vm = new OrderModel();
             List<OrderModel> orders = new List<OrderModel>();
             IQueryable<Order> dbOrders = OrderService.GetAllOrders(keyword);

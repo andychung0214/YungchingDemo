@@ -42,22 +42,43 @@ namespace YungchingDemo.Controllers
         }
 
         // GET: ProductsController
-        public ActionResult Index(string keyword)
+        public async Task<IActionResult> Index(string keyword, int? pageNumber, int pageSize = 0)
         {
+            ViewBag.CurrentPageIndex = pageNumber <= 1 ? 1 : pageNumber;
+
             ProductModel vm = new ProductModel();
             List<ProductModel> products = new List<ProductModel>();
 
             var dbProducts = ProductService.GetAllProducts(keyword);
 
-            foreach (var item in dbProducts)
+
+            var tmpTotalCount = dbProducts.ToList().Count;
+             if (pageNumber == 0)
             {
-                var productItem = Mapper.Map<ProductModel>(item);
-                products.Add(productItem);
+                pageNumber = 1;
+            }
+
+            if (pageSize == 0)
+            {
+                pageSize = 8;
+            }
+
+
+            PaginatedList<Product> paginatedList = await PaginatedList<Product>.CreateAsync(dbProducts, pageNumber ?? 1, pageSize);
+            List<ProductModel> productModels = new List<ProductModel>();
+
+
+            foreach (var item in paginatedList)
+            {
+                var orderItem = Mapper.Map<ProductModel>(item);
+                products.Add(orderItem);
             }
 
             vm.Products = products;
+            ViewBag.TotalPageCount = (tmpTotalCount / pageSize) + (tmpTotalCount % pageSize == 0 ? 0 : 1);
 
-            return View(this.GetProducts(1));
+
+            return View(vm);
         }
 
         [HttpPost]
