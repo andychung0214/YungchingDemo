@@ -102,7 +102,9 @@ namespace YungchingDemo.Controllers
         public ActionResult Create()
         {
             OrderDetailModel vm = new OrderDetailModel();
-
+            string keyword = string.Empty;
+            var lateastOrderID = _context.Orders.Select(o => o.OrderId).Max();
+            ViewBag.addOrderID = lateastOrderID + 1;
             return View(vm);
         }
 

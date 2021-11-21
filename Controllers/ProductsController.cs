@@ -104,6 +104,10 @@ namespace YungchingDemo.Controllers
         public ActionResult Create()
         {
             ProductModel vm = new ProductModel();
+            string keyword = string.Empty;
+            var lateastProductID = _context.Products.Select(o => o.ProductId).Max();
+            ViewBag.addProductID = lateastProductID + 1 ;
+
 
             return View(vm);
         }
@@ -149,6 +153,7 @@ namespace YungchingDemo.Controllers
         }
 
         // GET: ProductsController/Delete/5
+        [HttpPost]
         public async Task<ActionResult> Delete(int id)
         {
             if (id == 0)

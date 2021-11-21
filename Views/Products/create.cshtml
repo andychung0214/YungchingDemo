@@ -2,8 +2,8 @@
 
 @{
     ViewData["Title"] = "新增產品";
+    var productID = ViewBag.addProductID;
 }
-
 
 
 
@@ -11,7 +11,7 @@
     <div class="row mb-3">
         <label for="productID" class="col-sm-2 col-form-label">產品ID</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" id="productID">
+            <input disabled type="number" class="form-control" id="productID" value="@productID">
         </div>
     </div>
     <div class="row mb-3">
@@ -86,10 +86,8 @@
     $('#formCreateProduct').on('submit', function (event) {
         event.preventDefault();
 
-        debugger
-
         var productData = {
-            ProductId: 79,
+            ProductId: @productID,
             ProductName: $('#productName').val(),
             SupplierID: $('#supplierID').val(),
             CategoryID: $('#categoryID').val(),
@@ -97,8 +95,6 @@
         };
 
         SaveData("Create", productData, "product");
-
-
     });
 
 </script>

@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "新增訂單";
+    var orderID = ViewBag.addOrderID;
 }
 
 
@@ -11,7 +12,7 @@
     <div class="row mb-3">
         <label for="orderID" class="col-sm-2 col-form-label">訂單編號</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" id="orderID">
+            <input disabled type="number" class="form-control" id="orderID" value="@orderID">
         </div>
     </div>
     <div class="row mb-3">
