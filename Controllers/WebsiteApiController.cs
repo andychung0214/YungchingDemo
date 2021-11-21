@@ -77,11 +77,10 @@ namespace YungchingDemo.Controllers
         [Route("product/{id}")]
         public async Task<ActionResult> Put(int id, ProductModel requestBody)
         {
-            if (requestBody == null || !ModelState.IsValid)
+            if (requestBody == null)
             {
                 return StatusCode(StatusCodes.Status404NotFound, requestBody);
             }
-
             try
             {
                 await ProductService.UpdateProduct(id, requestBody);
@@ -92,26 +91,26 @@ namespace YungchingDemo.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
-        // DELETE api/web/5
-        //[HttpDelete]
-        //[Route("product/{id}")]
-        //public async Task<ActionResult> Delete(int id)
-        //{
-        //    if (id == 0)
-        //    {
-        //        return NotFound();
-        //    }
+        //DELETE api/web/5
+        [HttpDelete]
+        [Route("product/{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            if (id == 0)
+            {
+                return NotFound();
+            }
 
-        //    try
-        //    {
-        //        await ProductService.DeleteProductBy(id);
-        //        return StatusCode(StatusCodes.Status200OK);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError, ex);
-        //    }
-        //}
+            try
+            {
+                await ProductService.DeleteProductBy(id);
+                return StatusCode(StatusCodes.Status200OK);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex);
+            }
+        }
 
         #endregion
 

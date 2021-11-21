@@ -20,13 +20,13 @@
     <div class="row mb-3">
         <label for="supplierID" class="col-sm-2 col-form-label">供應商ID</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="supplierID" value="@Model.SupplierId">
+            <input disabled type="text" class="form-control" id="supplierID" value="@Model.SupplierId">
         </div>
     </div>
     <div class="row mb-3">
         <label for="categoryID" class="col-sm-2 col-form-label">型別ID</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="categoryID" value="@Model.CategoryId">
+            <input disabled type="text" class="form-control" id="categoryID" value="@Model.CategoryId">
         </div>
     </div>
     <div class="row mb-3">
@@ -59,17 +59,17 @@
             <input type="number" class="form-control" id="recorderLevel" value="@Model.ReorderLevel">
         </div>
     </div>
-    <div class="row mb-3">
+    @*<div class="row mb-3">
         <label for="recorderLevel" class="col-sm-2 col-form-label">中止</label>
         <div class="col-sm-10">
             <select id="recorderLevel" class="form-control">
                 <option></option>
                 <option value="false">False</option>
-                <option value="true">True</option>
+                <option value="true" selected>True</option>
             </select>
-            @*<input type="text" class="form-control" id="recorderLevel" value="@Model.Discontinued">*@
+            <input type="text" class="form-control" id="recorderLevel" value="@Model.Discontinued">
         </div>
-    </div>
+    </div>*@
     <div class="row mb-3">
         <input id="submitEditProduct" type="submit" class="btn btn-success" value="Edit Product">
         <div class="col-sm-10">
@@ -81,12 +81,12 @@
 </form>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
-    //$(document).ready(function () {
-    //    $('select option[value=true]').attr("selected", true);
-    //}
+    
     $('#formCreateProduct').on('submit', function (event) {
+        
         var productData = {
             id: @Model.ProductId,
+            ProductId: @Model.ProductId,
             ProductName: $('#productName').val(),
             SupplierID: $('#supplierID').val(),
             CategoryID: $('#categoryID').val(),
@@ -95,11 +95,11 @@
             UnitsInStock: $('#unitInStock').val(),
             UnitsOnOrder: $('#unitOnOrder').val(),
             ReorderLevel: $('#recorderLevel').val(),
-            Discontinued: $('#recorderLevel').val(),
-            Products: productData
+            Discontinued: 0,
         }
 
         SaveData("Update", productData, "product");
         event.preventDefault();
     });
+
 </script>
