@@ -63,9 +63,10 @@
                     <a class="text-dark" href="/Products/Edit/@item.ProductId">
                         <input type="button" class="btn btn-info" value="Edit" />
                     </a>
-                    <a class="text-dark" href="/Products/Delete/@item.ProductId">
-                        <input type="button" class="btn btn-danger confirmation" value="Delete" />
-                    </a>
+
+
+                    <input type="button" class="btn btn-danger" onclick="deleteAction(@item.ProductId)" value="Delete" />
+                    @*<button class="btnDelete">Delete</button>*@
 
                 </th>
             </tr>
@@ -86,16 +87,18 @@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript">
 
-    $('.confirmation').on('click', function () {
-        @*var callUrl = "api/web/@Model.ProductId"
+    function deleteAction(productId) {
+        var deleteUrl = '/api/web/product/' + productId;
+        var backUrl = window.location.protocol +'//'+ window.location.host + '/Products';
         $.ajax({
             type: "DELETE",
-            url: callUrl
+            url: deleteUrl
         }).done(function (res) {
-            $('#aError').trigger('click');
+            $('#aDelete').trigger('click');
+            //location.href = backUrl;
         }).fail(function (jqXHR, textStatus, errorThrown) {
             $('#aError').trigger('click');
-        });*@
-        return confirm('Are you sure delete?');
-    });
+        });
+    };
+
 </script>

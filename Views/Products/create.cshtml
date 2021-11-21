@@ -65,7 +65,7 @@
     <div class="row mb-3">
         <label for="recorderLevel" class="col-sm-2 col-form-label">中止</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" id="recorderLevel">
+            <input type="text" class="form-control" id="recorderLevel">
         </div>
     </div>
     <div class="row mb-3">
@@ -84,17 +84,22 @@
 
 <script type="text/javascript">
     $('#formCreateProduct').on('submit', function (event) {
-        event.preventDefault();
 
         var productData = {
-            ProductId: @productID,
             ProductName: $('#productName').val(),
             SupplierID: $('#supplierID').val(),
             CategoryID: $('#categoryID').val(),
-            Discontinued: false
+            QuantityPerUnit: $('#quantity').val(),
+            UnitPrice: $('#unitPrice').val(),
+            UnitsInStock: $('#unitInStock').val(),
+            UnitsOnOrder: $('#unitOnOrder').val(),
+            ReorderLevel: $('#recorderLevel').val(),
+            Discontinued: true,
         };
 
         SaveData("Create", productData, "product");
+        event.preventDefault();
+
     });
 
 </script>

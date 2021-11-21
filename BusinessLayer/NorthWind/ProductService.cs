@@ -119,10 +119,10 @@ namespace YungchingDemo.BusinessLayer.NorthWind
                 else
                 {
                     NorthwindContext.Products.Remove(productEntitiy);
-                    //await NorthwindContext.SaveChangesAsync();
+                    await NorthwindContext.SaveChangesAsync();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
