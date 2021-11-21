@@ -77,7 +77,7 @@ namespace YungchingDemo.Controllers
         [Route("product/{id}")]
         public async Task<ActionResult> Put(int id, ProductModel requestBody)
         {
-            if (requestBody == null)
+            if (requestBody == null || !ModelState.IsValid)
             {
                 return StatusCode(StatusCodes.Status404NotFound, requestBody);
             }
