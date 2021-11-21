@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YungchingDemo.BusinessLayer.NorthWind;
 using YungchingDemo.DataLayer.NorthWind;
 using YungchingDemo.Models.ViewModel;
 
@@ -29,6 +31,12 @@ namespace YungchingDemo
         {
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
+
+            #region DI
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<INorthWindService, NorthWindService>();
+            #endregion
+
             services.AddDbContext<NorthwindContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:NorthWind"]));
 
             #region Automapper

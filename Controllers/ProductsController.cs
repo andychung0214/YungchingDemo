@@ -15,6 +15,8 @@ namespace YungchingDemo.Controllers
 {
     public class ProductsController : Controller
     {
+        private INorthWindService NorthWindService { get; set; }
+
         ProductService ProductService { get; }
 
         /// <summary>
@@ -32,13 +34,15 @@ namespace YungchingDemo.Controllers
         /// </summary>
         IMapper Mapper { get; }
 
-        public ProductsController(NorthwindContext northwindContext, IConfiguration configuration, IMapper mapper)
+        public ProductsController(NorthwindContext northwindContext, IConfiguration configuration, IMapper mapper, INorthWindService northWindService)
         {
             ProductService = new ProductService(northwindContext, configuration, mapper);
-
+            
             _context = northwindContext;
             Config = configuration;
             Mapper = mapper;
+
+            NorthWindService = northWindService;
         }
 
         // GET: ProductsController
@@ -49,11 +53,11 @@ namespace YungchingDemo.Controllers
             ProductModel vm = new ProductModel();
             List<ProductModel> products = new List<ProductModel>();
 
-            var dbProducts = ProductService.GetAllProducts(keyword);
-
-
+            var dbProducts = NorthWindService.GetIqueryableAllProducts(keyword);
+            
+            
             var tmpTotalCount = dbProducts.ToList().Count;
-             if (pageNumber == 0)
+            if (pageNumber == 0)
             {
                 pageNumber = 1;
             }
