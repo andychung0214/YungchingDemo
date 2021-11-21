@@ -6,7 +6,7 @@ $('#aEdit').on('click', function (e) {
         theme = btn.text();
 
     $.jAlert({
-        'title': 'Edit',
+        'title': 'Edit Dialog',
         'content': 'Edit Done.',
         'theme': theme,
         'closeOnClick': true
@@ -21,7 +21,7 @@ $('#aCreate').on('click', function (e) {
         theme = btn.text();
 
     $.jAlert({
-        'title': 'Creat',
+        'title': 'Create Dialog',
         'content': 'Create Done.',
         'theme': theme,
         'closeOnClick': true
@@ -38,6 +38,20 @@ $('#aError').on('click', function (e) {
     $.jAlert({
         'title': 'Error Alert',
         'content': 'Action Error.',
+        'theme': theme,
+        'closeOnClick': true
+    });
+    return false;
+});
+
+$('#aDelete').on('click', function (e) {
+    e.preventDefault();
+    var btn = $(this),
+        theme = btn.text();
+
+    $.jAlert({
+        'title': 'Delete Dialog',
+        'content': 'Delete Done',
         'theme': theme,
         'closeOnClick': true
     });
