@@ -57,14 +57,14 @@ namespace YungchingDemo.BusinessLayer.NorthWind
             return product;
         }
 
-        public HttpResponseMessage CreateProduct(HttpResponseMessage response, ProductModel productInfo)
+        public async Task<HttpResponseMessage> CreateProduct(HttpResponseMessage response, ProductModel productInfo)
         {
             var product = Mapper.Map<Product>(productInfo);
 
             try
             {
                 NorthwindContext.Products.Add(product);
-                NorthwindContext.SaveChangesAsync();
+                await NorthwindContext.SaveChangesAsync();
             }
             catch (Exception ex)
             {

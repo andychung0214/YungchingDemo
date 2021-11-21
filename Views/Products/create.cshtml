@@ -17,7 +17,7 @@
     <div class="row mb-3">
         <label for="productName" class="col-sm-2 col-form-label">產品名稱</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="productName">
+            <input required type="text" class="form-control" id="productName">
         </div>
     </div>
     <div class="row mb-3">
@@ -35,13 +35,13 @@
     <div class="row mb-3">
         <label for="quantity" class="col-sm-2 col-form-label">數量</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" id="quantity">
+            <input type="text" class="form-control" id="quantity">
         </div>
     </div>
     <div class="row mb-3">
         <label for="unitPrice" class="col-sm-2 col-form-label">單價</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" id="unitPrice">
+            <input type="text" class="form-control" id="unitPrice">
         </div>
     </div>
     <div class="row mb-3">
@@ -87,8 +87,8 @@
 
         var productData = {
             ProductName: $('#productName').val(),
-            SupplierID: $('#supplierID').val(),
-            CategoryID: $('#categoryID').val(),
+            SupplierID: 8,
+            CategoryID: 4,
             QuantityPerUnit: $('#quantity').val(),
             UnitPrice: $('#unitPrice').val(),
             UnitsInStock: $('#unitInStock').val(),

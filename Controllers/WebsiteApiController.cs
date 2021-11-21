@@ -62,7 +62,7 @@ namespace YungchingDemo.Controllers
             try
             {
                 HttpResponseMessage response = new HttpResponseMessage();
-                HttpResponseMessage product = ProductService.CreateProduct(response, requestBody);
+                await ProductService.CreateProduct(response, requestBody);
                 return StatusCode(StatusCodes.Status200OK);
             }
             catch (Exception ex)
